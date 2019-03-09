@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <article>
+        <h2>{{ movie.title }}</h2>
+        <div class="metadata">Ecrit le {{ movie.createdAt | date('d/m/Y') }} à {{  movie.createdAt | date('H:i') }} dans la catégorie {{ movie.category.title }} </div>
+        <div class="content"><img src={{ movie.image }} alt=""></div>
+            {{ movie.content | raw }}
+
+
+    </article>
+
+    <section id="commentaires">
+
+        <h1>{{ movie.comments | length }} Commentaires</h1>
+
+        {% for comment in movie.comments %}
+
+            <div class="comment">
+                <div class="row">
+                    <div class="col-3">
+                        {{ comment.author }} (<small> {{ comment.createdAt | date ('d/m/Y à H:i') }}</small>)
+                    </div>
+                    <div class="col">
+                        {{ comment.content | raw }}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        {% if app.user %}
+
+            <h1>Ecrire un Commentaires!!!</h1>
+
+
+            {{ form_start(commentForm) }}
+            {{ form_row(commentForm.author, {'attr' : {'placeholder' : "Votre nom........."}}) }}
+            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire....."}}) }}
+            <button type="submit" class="btn btn-success">Commenter</button>
+            {{ form_end(commentForm) }}
+
+        {% else %}
+
+            <h2>Vous pouvez pas écrire de commentaires, Veuillez vous connectez!!!</h2>
+            <a href="{{ path('app_movie_login') }}" class="btn btn-primary">Connexion</a>
+
+        {% endif %}
+
+
+
+    </section>
+
+
+{% endblock body %}

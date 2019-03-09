@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formMovie 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+
+    {% if editMovie %}
+        <h1>Modification d'un movie</h1>
+    {% else %}
+        <h1>Création d'un movie</h1>
+    {% endif %}
+
+    {{ form_start(formMovie) }}
+
+    {{ form_row(formMovie.title, {'attr' : {'placeholder' : 'Titre du film'}}) }}
+    {{ form_row(formMovie.category) }}
+    {{ form_row(formMovie.content, {'attr' : {'placeholder' : 'Contenu du film'}}) }}
+    {{ form_row(formMovie.image, {'attr' : {'placeholder' : 'Image du film'}}) }}
+
+    <button type="submit" class="btn btn-success">
+        {% if editMovie  %}
+            Enregistrer Film
+        {% else %}
+            Ajouter Film
+        {% endif %}
+    </button>
+
+    {{ form_end(formMovie) }}
+
+
+{% endblock %}

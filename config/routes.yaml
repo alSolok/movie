@@ -1,0 +1,27 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_movie_index:
+    path: /movie
+    controller: App\Controller\MovieController::index
+app_movie_home:
+    path: /
+    controller: App\Controller\MovieController::home
+app_movie_create:
+    path: /movie/new
+    controller: App\Controller\MovieController::form
+app_movie_edit:
+    path: /movie/{id}/edit
+    controller: App\Controller\MovieController::form
+app_movie_show:
+    path: /movie/{id}
+    controller: App\Controller\MovieController::show
+app_movie_registration:
+    path: /register
+    controller: App\Controller\SecurityController::registration
+app_movie_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+app_movie_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout

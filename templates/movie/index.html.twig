@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MovieController!{% endblock %}
+
+{% block body %}
+
+    <section class="movie">
+
+        {% for movie in movies %}
+
+            <article>
+                <h2>{{ movie.title }}</h2>
+                <div class="metadata">Ecrit le {{ movie.createdAt | date('d/m/Y') }} à {{ movie.createdAt | date('H:i') }} dans la catégorie {{ movie.category.title }}</div>
+                <div class="content"><img src={{ movie.image }} alt="">
+                   {{ movie.content | raw }}
+                    <a href="{{ path('app_movie_show', { 'id' : movie.id }) }}" class="btn btn-primary">Lire la suite</a>
+                    <a href="{{ path('app_movie_edit', { 'id' : movie.id }) }}" class="btn btn-primary">Modifier</a></div>
+            </article>
+
+        
+        {% endfor %}
+
+    </section>
+
+{% endblock %}
